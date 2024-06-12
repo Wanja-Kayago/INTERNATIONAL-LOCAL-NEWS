@@ -27,4 +27,19 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('Error fetching news:', error);
       }
     });
+    function displayNews(articles) {
+      articles.forEach(article => {
+        const articleDiv = document.createElement('div');
+        articleDiv.className = 'article';
+        articleDiv.innerHTML = `
+            <a href="${article.url}" target="_blank">
+                <img src="${article.urlToImage}" alt="${article.title}">
+                <h3>${article.title}</h3>
+            </a>
+            <small>${new Date(article.publishedAt).toLocaleString()}</small>
+            <p>${article.description}</p>
+        `;
+        newsContainer.appendChild(articleDiv);
+      });
+    }
 });
